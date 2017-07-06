@@ -44,7 +44,7 @@
           <div class="sidebar-header header-cover">
               <div class="top-bar"></div>
               <div class="sidebar-image">
-                  <img src="../imgs/r1.jpg">
+                  <img src="../imgs/upload/${userSession.pictureProfile}">
                   ${userSession.name}
               </div>
               <span class="sidebar-brand">
@@ -111,12 +111,13 @@
 	        </div>
           <div class="">
             <div class="col-md-3">
-              <img src="../imgs/upload/teste1.jpg" class="img-rounded img-responsive img-raised">
+              <img src="../imgs/upload/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
               <br/>
+              <
               <form class="text-center" id="upload">
-                <input type="hidden" name="execute" value="UploadProfile">
+                <input type="hidden" id="UpdateProfile" value="../dashboard/updateProfile">
                 <label class="file" title="">
-                  <input type="file" id="perfil" name="file" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
+                  <input type="file" id="perfil" name="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
                 </label>
                 <input type="submit" id="btn-perfil" class="btn btn-custom btn-sm" value="Enviar" disabled/>
               </form>

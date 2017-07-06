@@ -37,7 +37,7 @@
           <div class="sidebar-header header-cover">
               <div class="top-bar"></div>
               <div class="sidebar-image">
-                  <img src="../imgs/r1.jpg">
+                  <img src="../imgs/upload/${userSession.pictureProfile}">
                   ${userSession.name}
               </div>
               <span class="sidebar-brand">

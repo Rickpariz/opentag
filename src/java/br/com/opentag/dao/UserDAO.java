@@ -36,6 +36,8 @@ public class UserDAO {
             user.setType(resultSet.getString("tipo"));
             user.setId(resultSet.getLong("id"));
             user.setName(resultSet.getString("nome"));
+            user.setPictureProfile(resultSet.getString("pictureProfile"));
+            user.setPictureCover(resultSet.getString("pictureCover"));
             return user;
         }
 
@@ -92,6 +94,17 @@ public class UserDAO {
         String sql = "update usuarios set senha= ? where id = ?";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         instruction.setString(1, password);
+        instruction.setLong(2, id);
+        int result = instruction.executeUpdate();
+        instruction.close();
+
+        return result == 1;
+    }
+
+    public boolean insertPictureProfile(long id,String name) throws SQLException {
+        String sql = "update usuarios set pictureProfile= ? where id = ?";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.setString(1, name);
         instruction.setLong(2, id);
         int result = instruction.executeUpdate();
         instruction.close();

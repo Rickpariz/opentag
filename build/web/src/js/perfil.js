@@ -9,25 +9,53 @@ $(document).ready(function() {
   var senha_novamente = $("#senha-novamente");
 
   // upload da imagem de perfil
-  $("#perfil").change(function(){
+  $("#perfil").change(function() {
     var fileName = $(this).val();
-       if (fileName){
-         $("#btn-perfil").attr("disabled", false);
-       } else {
-         $("#btn-perfil").attr("disabled", true);
-       }
+    if (fileName) {
+      $("#btn-perfil").attr("disabled", false);
+    } else {
+      $("#btn-perfil").attr("disabled", true);
+    }
   });
-  $("#upload").on("submit", function(e){
-    e.preventDefault();
-    $.ajax({
-      url: $("#controller").val(),
-      type: "POST",
-      data: $(this).serialize(),
-      success: function(json){
-        
-      },
-      error: function(){
 
+  $("#upload").on("submit", function(e) {
+    e.preventDefault();
+    var data = new FormData(this);
+    console.log(data);
+    $.ajax({
+      url: $("#UpdateProfile").val(),
+      method: "POST",
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      enctype: 'multipart/form-data',
+      success: function(json) {
+        if (json.status) {
+          iziToast.success({
+            title: 'Ok',
+            message: json.message,
+            icon: "fa fa-check",
+            timeout: 2500,
+            position: "center",
+            onClose: function() {
+              location.reload();
+            }
+          });
+        } else {
+          iziToast.error({
+            title: 'Erro',
+            message: json.message,
+            icon: "fa fa-times"
+          });
+        }
+      },
+      error: function() {
+        iziToast.error({
+          title: 'Erro',
+          message: "Erro ao fazer requisição",
+          icon: "fa fa-times"
+        });
       }
     });
   });

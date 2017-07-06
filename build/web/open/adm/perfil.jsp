@@ -2,7 +2,7 @@
     Document   : dashboard.jsp
     Created on : 26/06/2017, 15:05:02
     Author     : Ricardo Ferreira Pariz Silva
-    Dash Adm
+    Dash ADM
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%> -->
@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-        <title>Perfil - Adm </title>
+        <title>Perfil - ADM </title>
         <link rel="icon" href="imgs/simbolo.png" type="image/x-icon" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link href="https://fonts.googleapis.com/css?family=Oswald:200" rel="stylesheet">
@@ -44,7 +44,7 @@
           <div class="sidebar-header header-cover">
               <div class="top-bar"></div>
               <div class="sidebar-image">
-                  <img src="../../imgs/r1.jpg">
+                  <img src="../../imgs/upload/${userSession.pictureProfile}">
                   ${userSession.name}
               </div>
               <span class="sidebar-brand">
@@ -106,68 +106,84 @@
       					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
       						<span aria-hidden="true"><i class="material-icons">clear</i></span>
       					</button>
-	            	<b>Plano:</b> Atualmente seu plano é o XXXXX
+	            	<b>Plano:</b> Atualmente seu plano é o X2XXXX
 	            </div>
 	        </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="panel panel-default">
-              <!-- Default panel contents -->
-              <div class="panel-heading">
-                <i class="material-icons">settings</i>
-                Informações da Conta
-              </div>
-              <div class="panel-body">
-                <div class="alert alert-info editDefault col-md-12">
-      	            <div class="container-fluid">
-            					<div class="alert-icon">
-            						<i class="material-icons">info_outline</i>
-            					</div>
-            					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            						<span aria-hidden="true"><i class="material-icons">clear</i></span>
-            					</button>
-      	            	 Para mudar foto de perfil/capa clique em editar
-      	            </div>
-      	        </div>
-                <!-- id do usuario -->
-                <input type="hidden" id="id" value="${userSession.id}">
-                <!-- url do controller -->
-                <input type="hidden" id="controller" value="../../tag">
-                <!-- Padrão -->
-                <p class="editDefault"> Nome: ${userSession.name}</p>
-                <p class="editDefault"> Email: ${userSession.email}</p>
-
-                <!-- Editar -->
-                <div class="input-group col-sm-11 editActive hide">
-                  <span class="input-group-addon">
-                      <i class="material-icons">account_box</i>
-                    </span>
-                  <input type="text" class="form-control" id="nome" required="required" value="${userSession.name}">
-                </div>
-                <div class="input-group col-sm-11 editActive hide">
-                  <span class="input-group-addon">
-                      <i class="material-icons">email</i>
-                    </span>
-                  <input type="email" class="form-control" id="email" value="${userSession.email}">
-                </div>
-                <label class="file hide editActive" title="">
-                  <input type="file" id="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
+          <div class="">
+            <div class="col-md-3">
+              <img src="../../imgs/upload/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
+              <br/>
+              <form class="text-center" id="upload">
+                <input type="hidden" id="UpdateProfile" value="/opentagv.1/dashboard/updateProfile">
+                <label class="file" title="">
+                  <input type="file" id="perfil" name="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
                 </label>
-                <label class="capa file hide editActive" title="">
-                  <input type="file" id="capa" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
-                </label>
+                <input type="submit" id="btn-perfil" class="btn btn-custom btn-sm" value="Enviar" disabled/>
+              </form>
 
-              </div>
-              <div class="panel-footer">
-                <button type="button" id="btn-edit" class="btn btn-custom btn-sm editDefault">Editar</button>
-                <button type="button" id="btn-edit-senha" class="btn btn-custom btn-sm editDefault" data-toggle="modal" data-target="#myModal">Editar Senha</button>
-                <button type="button" id="btn-confirmar" class="btn btn-custom btn-sm hide editActive">Confirmar</button>
-                <button type="button" id="btn-cancelar" class="btn btn-custom btn-sm hide editActive">Cancelar</button>
+              <br/>
+              <br/>
+            </div>
+            <div class="col-md-9">
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                  <i class="material-icons">settings</i>
+                  Informações da Conta
+                </div>
+                <div class="panel-body">
+                  <div class="alert alert-info editDefault col-md-12">
+        	            <div class="container-fluid">
+              					<div class="alert-icon">
+              						<i class="material-icons">info_outline</i>
+              					</div>
+              					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+              					</button>
+        	            	 Cuidado ao alterar suas informações
+        	            </div>
+        	        </div>
+                  <!-- id do usuario -->
+                  <input type="hidden" id="id" value="${userSession.id}">
+                  <!-- url do controller -->
+                  <input type="hidden" id="controller" value="../../tag">
+                  <!-- Padrão -->
+                  <p class="editDefault"> Nome: ${userSession.name}</p>
+                  <p class="editDefault"> Email: ${userSession.email}</p>
+
+                  <!-- Editar -->
+                  <div class="input-group col-sm-11 editActive hide">
+                    <span class="input-group-addon">
+                        <i class="material-icons">account_box</i>
+                      </span>
+                    <input type="text" class="form-control" id="nome" required="required" value="${userSession.name}">
+                  </div>
+                  <div class="input-group col-sm-11 editActive hide">
+                    <span class="input-group-addon">
+                        <i class="material-icons">email</i>
+                      </span>
+                    <input type="email" class="form-control" id="email" value="${userSession.email}">
+                  </div>
+                  <%-- <label class="file hide editActive" title="">
+                    <input type="file" id="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
+                  </label>
+                  <label class="capa file hide editActive" title="">
+                    <input type="file" id="capa" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
+                  </label> --%>
+
+                </div>
+                <div class="panel-footer">
+                  <button type="button" id="btn-edit" class="btn btn-custom btn-sm editDefault">Editar</button>
+                  <button type="button" id="btn-edit-senha" class="btn btn-custom btn-sm editDefault" data-toggle="modal" data-target="#myModal">Editar Senha</button>
+                  <button type="button" id="btn-confirmar" class="btn btn-custom btn-sm hide editActive">Confirmar</button>
+                  <button type="button" id="btn-cancelar" class="btn btn-custom btn-sm hide editActive">Cancelar</button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
+        <div class="row">
           <div class="col-sm-6">
             <div class="panel panel-default">
               <!-- Default panel contents -->
