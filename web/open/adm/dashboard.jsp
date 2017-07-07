@@ -37,14 +37,14 @@
           <div class="sidebar-header header-cover">
               <div class="top-bar"></div>
               <div class="sidebar-image">
-                  <img src="../imgs/upload/${userSession.pictureProfile}">
+                  <img src="" data-image="/opentagv.1/Image/${userSession.pictureProfile}">
                   ${userSession.name}
               </div>
               <span class="sidebar-brand">
                   ${userSession.email}
               </span>
           </div>
-          <form action="../../tag" method="post" id="logout">
+          <form action="../tag" method="post" id="logout">
           <ul class="nav sidebar-nav">
               <li class="active">
                   <a href="dashboard">
@@ -195,5 +195,6 @@
     <script src="../src/js/jquery.min.js" type="text/javascript"></script>
     <script src="../src/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="../src/js/material.min.js"></script>
+    <script src="../src/js/moment.js" charset="utf-8"></script>
     <script src="../src/js/dashboard.js"></script>
 </html>

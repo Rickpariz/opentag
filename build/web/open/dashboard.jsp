@@ -38,7 +38,7 @@
           <div class="sidebar-header header-cover">
               <div class="top-bar"></div>
               <div class="sidebar-image">
-                  <img src="imgs/upload/${userSession.pictureProfile}">
+                  <img src="" data-image="/opentagv.1/Image/${userSession.pictureProfile}">
                    ${userSession.name}
               </div>
               <span class="sidebar-brand">
@@ -55,12 +55,6 @@
               </li>
               <li>
                   <a href="#">
-                      <i class="sidebar-icon material-icons">face</i>
-                      Clientes
-                  </a>
-              </li>
-              <li>
-                  <a href="#">
                       <i class="sidebar-icon material-icons">description</i>
                       Projetos
                   </a>
@@ -68,7 +62,7 @@
               <li>
                   <a href="#">
                       <i class="sidebar-icon material-icons">message</i>
-                      Mensagens
+                      Contato
                   </a>
               </li>
               <li class="divider"></li>
@@ -90,7 +84,7 @@
       <div class="col-md-9 col-sm-12">
         <div class="row">
           <div class="title">
-            <h2>Dashboard</h2>
+            <h2>Bem Vindo !</h2>
           </div>
           <!-- <div class="alert alert-info col-md-12">
 	            <div class="container-fluid">
@@ -104,6 +98,37 @@
 	            </div>
 	        </div> -->
         </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <i class="material-icons">chrome_reader_mode</i>
+                Crie seu projeto !
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                    <h4 class="description">
+                      Inicie um novo projeto com 4 passos simples !
+                    </h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="tutorial col-md-4">
+                    <div class="icon text-center">
+                      <i class="material-icons">description</i>
+                    </div>
+                    <div class="descrption text-center">
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       </div>
 
@@ -112,5 +137,6 @@
     <script src="src/js/jquery.min.js" type="text/javascript"></script>
     <script src="src/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="src/js/material.min.js"></script>
+    <script src="src/js/moment.js" charset="utf-8"></script>
     <script src="src/js/dashboard.js"></script>
 </html>

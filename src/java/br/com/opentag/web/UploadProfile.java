@@ -49,7 +49,7 @@ public class UploadProfile extends HttpServlet {
         MyJsonResponse jsonResponse = new MyJsonResponse();
         Connection connection;
         Path path = Paths
-                .get("C:\\Users\\bahia\\Documents\\Projetos\\OpenTag\\opentagv.1\\web\\imgs\\upload");
+                .get("C:\\upload");
 
         // pegando a imagem
         Part imagem = request.getPart("perfil");
