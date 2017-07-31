@@ -5,15 +5,11 @@
  */
 package br.com.opentag.web;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,18 +49,10 @@ public class Image extends HttpServlet {
         if (file.exists()) {
 //            BufferedImage imagem = ImageIO.read(file);
             Files.copy(file.toPath(), response.getOutputStream());
-            System.out.println("foi");
         } else {
             System.out.println("Imagem não existe !");
         }
-        System.out.println(nameImage);
         
     }
-
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+   
 }

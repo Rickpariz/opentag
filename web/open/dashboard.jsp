@@ -19,7 +19,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
         <link href=" src/css/bootstrap.min.css" rel="stylesheet" />
         <link href="src/css/material-kit.css" rel="stylesheet" />
+        <link href="src/css/iziModal.css" rel="stylesheet" />
         <link href="src/css/dashboard.css" rel="stylesheet" />
+        <link href="src/css/cliente-dash.css" rel="stylesheet" />
     </head>
     <body>
       <nav class="navbar navbar-custom">
@@ -84,7 +86,8 @@
       <div class="col-md-9 col-sm-12">
         <div class="row">
           <div class="title">
-            <h2>Bem Vindo !</h2>
+            <br/>
+            <br/>
           </div>
           <!-- <div class="alert alert-info col-md-12">
 	            <div class="container-fluid">
@@ -109,8 +112,9 @@
                 <div class="row">
                   <div class="col-sm-12 text-center">
                     <h4 class="description">
-                      Inicie um novo projeto com 4 passos simples !
+                      Inicie um novo projeto com 3 passos simples !
                     </h4>
+                    <br/>
                   </div>
                 </div>
                 <div class="row">
@@ -118,12 +122,45 @@
                     <div class="icon text-center">
                       <i class="material-icons">description</i>
                     </div>
-                    <div class="descrption text-center">
-
+                    <br/>
+                    <div class="text-center">
+                      <h4 class="title">Descreva o projeto !</h4>
+                      <p class="description">
+                        Descreva oque você precisa para a nossa equipe, iremos ler atentamente !
+                      </p>
+                    </div>
+                  </div>
+                  <div class="tutorial col-md-4">
+                    <div class="icon text-center">
+                      <i class="material-icons">attach_money</i>
+                    </div>
+                    <br/>
+                    <div class="text-center">
+                      <h4 class="title">Escolha o plano</h4>
+                      <p class="description">Escolha o plano ideal para o seu projeto, temos as opções: ECO, PREMIUM e STARTER</p>
+                    </div>
+                  </div>
+                  <div class="tutorial col-md-4">
+                    <div class="icon text-center">
+                      <i class="material-icons">assessment</i>
+                    </div>
+                    <br/>
+                    <div class="text-center">
+                      <h4 class="title">Gerencie </h4>
+                      <p class="description">Após aprovarmos seu projeto, você vai poder gerencia-lo, vendo as datas de entrega e os progessos da nossa equipe !</p>
                     </div>
                   </div>
                 </div>
+                <br/>
+                <div class="row text-center">
+                  <button type="button" id="btn-modal-projeto" class="btn btn-custom">Criar</button>
+                </div>
 
+                <div class="iziModal" id="div-modal-projeto">
+                  <div class="section-modal">
+                    fafa
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -137,6 +174,8 @@
     <script src="src/js/jquery.min.js" type="text/javascript"></script>
     <script src="src/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="src/js/material.min.js"></script>
+    <script src="src/js/iziModal.js"></script>
     <script src="src/js/moment.js" charset="utf-8"></script>
     <script src="src/js/dashboard.js"></script>
+    <script src="src/js/cliente-dash.js"></script>
 </html>
