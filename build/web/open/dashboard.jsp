@@ -20,6 +20,7 @@
         <link href=" src/css/bootstrap.min.css" rel="stylesheet" />
         <link href="src/css/material-kit.css" rel="stylesheet" />
         <link href="src/css/iziModal.css" rel="stylesheet" />
+        <link href="src/css/iziToast.min.css" rel="stylesheet" />
         <link href="src/css/dashboard.css" rel="stylesheet" />
         <link href="src/css/cliente-dash.css" rel="stylesheet" />
     </head>
@@ -158,7 +159,63 @@
 
                 <div class="iziModal" id="div-modal-projeto">
                   <div class="section-modal">
-                    fafa
+                    <form autocomplete="off" id="novo-projeto">
+                      <input type="hidden" name="execute" value="NewProject">
+                      <input type="hidden" name="id_user" value="${userSession.id}">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="input-group">
+                        		<span class="input-group-addon">
+                        			<i class="material-icons icon-tutorial ">assignment</i>
+                        		</span>
+                        		<input type="text" class="form-control" name="nome" placeholder="Digite o nome do projeto">
+                        	</div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="input-group">
+                        		<span class="input-group-addon">
+                        			<i class="material-icons">perm_identity</i>
+                        		</span>
+                        		<input type="text" class="form-control" disabled="true" value="${userSession.name}">
+                        	</div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-offset-1 col-sm-10">
+                          <textarea class="form-control" name="descricao" placeholder="Descreva o projeto, seja bem detalhado para melhor compreenção da equipe !" rows="5"></textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-offset-1 col-sm-3">
+                          <div class="radio">
+                          	<label>
+                          		<input type="radio" name="plano" value="eco">
+                          		ECO <br/> (R$ XX,XX)
+                          	</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="radio">
+                          	<label>
+                          		<input type="radio" name="plano" value="premium">
+                          		PREMIUM <br/> (R$ XX,XX)
+                          	</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="radio">
+                          	<label>
+                          		<input type="radio" name="plano" value="starter">
+                          		STARTER <br/> (R$ XX,XX)
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="text-center">
+                        <input type="submit" class="btn btn-custom" id="btn-solicitar" value="Solicitar">
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -175,6 +232,7 @@
     <script src="src/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="src/js/material.min.js"></script>
     <script src="src/js/iziModal.js"></script>
+    <script src="src/js/iziToast.min.js"></script>
     <script src="src/js/moment.js" charset="utf-8"></script>
     <script src="src/js/dashboard.js"></script>
     <script src="src/js/cliente-dash.js"></script>

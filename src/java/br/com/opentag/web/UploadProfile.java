@@ -7,20 +7,15 @@ package br.com.opentag.web;
 
 import br.com.opentag.dao.ConnectionPool;
 import br.com.opentag.dao.UserDAO;
-import br.com.opentag.interfaces.Run;
 import br.com.opentag.modelo.MyJsonResponse;
 import br.com.opentag.modelo.User;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
-import static java.lang.Long.parseLong;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -28,16 +23,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author Ricardo Ferreira Pariz Silva
  */
 @WebServlet(name = "UploadProfile", urlPatterns = {"/dashboard/updateProfile"})
-@MultipartConfig()
+@MultipartConfig(maxFileSize = 1024 * 1024 * 3)
 public class UploadProfile extends HttpServlet {
 
     @Override
@@ -51,13 +43,14 @@ public class UploadProfile extends HttpServlet {
         Path path = Paths
                 .get("C:\\upload");
 
-        // pegando a imagem
-        Part imagem = request.getPart("perfil");
-        if (!imagem.getContentType().contains("image")) {
-            jsonResponse.setStatus(false);
-            jsonResponse.setMessage("Arquivo invalido ! selecione uma imagem ");
-        } else {
-            try {
+        try {
+            // pegando a imagem
+            Part imagem = request.getPart("perfil");
+
+            if (!imagem.getContentType().contains("image")) {
+                jsonResponse.setStatus(false);
+                jsonResponse.setMessage("Arquivo invalido ! selecione uma imagem ");
+            } else {
                 // criando referencia do arquivo
                 File img = new File(path + File.separator + "profile" + user.getName() + ".png");
                 // criando arquivo em si
@@ -77,15 +70,19 @@ public class UploadProfile extends HttpServlet {
                     jsonResponse.setMessage("Erro ao inserir imagem no DB");
                 }
 
-            } catch (IOException ex) {
-                jsonResponse.setStatus(false);
-                jsonResponse.setMessage("Erro ao salvar imagem no local correto");
-            } catch (SQLException ex) {
-                jsonResponse.setStatus(false);
-                jsonResponse.setMessage("Erro no DB");
             }
-        }
 
+        } catch (IOException ex) {
+            jsonResponse.setStatus(false);
+            jsonResponse.setMessage("Erro ao salvar imagem no local correto");
+        } catch (SQLException ex) {
+            jsonResponse.setStatus(false);
+            jsonResponse.setMessage("Erro no DB");
+        } catch (IllegalStateException ex){
+            jsonResponse.setStatus(false);
+            jsonResponse.setMessage("Erro ! tamanho do arquivo maior que 5 MB");
+        }
+        
         String json = gson.toJson(jsonResponse);
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
