@@ -10,6 +10,7 @@ import br.com.opentag.dao.ProjectDAO;
 import br.com.opentag.interfaces.Run;
 import br.com.opentag.modelo.MyJsonResponse;
 import br.com.opentag.modelo.Project;
+import br.com.opentag.modelo.User;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
@@ -29,9 +30,11 @@ public class NewProject implements Run {
     public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MyJsonResponse jsonResponse = new MyJsonResponse();
         Gson gson = new Gson();
+        
         try {
+            User user = new User(Long.parseLong(request.getParameter("id_user")), request.getParameter("name_user"), request.getParameter("email_user"));
             Project project = new Project(request.getParameter("nome"), request.getParameter("descricao"),
-            Long.parseLong(request.getParameter("id_user")), request.getParameter("plano"));
+            user, request.getParameter("plano"), "Esperando Confirmação");
             Connection connection = new ConnectionPool().getConnection();
             ProjectDAO dao = new ProjectDAO(connection);
             if(dao.enterBasicInformation(project)){

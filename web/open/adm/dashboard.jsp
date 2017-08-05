@@ -59,7 +59,7 @@
                   </a>
               </li>
               <li>
-                  <a href="#">
+                  <a href="dashboard/projetos">
                       <i class="sidebar-icon material-icons">description</i>
                       Projetos
                   </a>

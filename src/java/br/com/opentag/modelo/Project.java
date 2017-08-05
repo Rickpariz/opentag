@@ -13,7 +13,7 @@ public class Project {
     private long id;
     private String name;
     private String description;
-    private long id_user;
+    private User user;
     private String plan;
     private String deadline;
     private String priority;
@@ -21,15 +21,38 @@ public class Project {
     private int percentege;
     private int id_information;
 
-    public Project(String name, String description, long id_user, String plan) {
+    public Project(String name, String description, User user, String plan, String status) {
         this.name = name;
         this.description = description;
-        this.id_user = id_user;
+        this.user = user;
         this.plan = plan;
+        this.status = status;
+    }
+
+    public Project(long id, String name, String description, User user, String plan, String deadline, String priority, String status, int percentege, int id_information) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.user = user;
+        this.plan = plan;
+        this.deadline = deadline;
+        this.priority = priority;
+        this.status = status;
+        this.percentege = percentege;
+        this.id_information = id_information;
+    }
+    
+    // Getters
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
     
-    // Getters
     public long getId() {
         return id;
     }
@@ -52,14 +75,6 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public long getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(long id_user) {
-        this.id_user = id_user;
     }
 
     public String getPlan() {

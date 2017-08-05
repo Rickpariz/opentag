@@ -30,6 +30,14 @@ public class User {
         this.name = nome;
     }
 
+    public User(long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+    
+    
+
     // Getters and Setters
 
     public void setPictureProfile(String pictureProfile) {

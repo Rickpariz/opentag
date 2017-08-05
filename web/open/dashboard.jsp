@@ -162,6 +162,8 @@
                     <form autocomplete="off" id="novo-projeto">
                       <input type="hidden" name="execute" value="NewProject">
                       <input type="hidden" name="id_user" value="${userSession.id}">
+                      <input type="hidden" name="name_user" value="${userSession.id}">
+                      <input type="hidden" name="email_user" value="${userSession.id}">
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="input-group">

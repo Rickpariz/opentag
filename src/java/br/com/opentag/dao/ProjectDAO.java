@@ -6,30 +6,61 @@
 package br.com.opentag.dao;
 
 import br.com.opentag.modelo.Project;
+import br.com.opentag.modelo.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Ricardo Ferreira Pariz Silva
  */
 public class ProjectDAO {
+
     private final Connection connection;
 
     public ProjectDAO(Connection connection) {
         this.connection = connection;
     }
-    
-    public boolean enterBasicInformation(Project project) throws SQLException{
-        String sql = "insert into projetos (nome, id_usuario, descricao, plano) values (?,?,?,?)";
+
+    public boolean enterBasicInformation(Project project) throws SQLException {
+        String sql = "insert into projetos (nome, id_usuario, descricao, plano, status) values (?,?,?,?,?)";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         instruction.setString(1, project.getName());
-        instruction.setLong(2, project.getId_user());
+        instruction.setLong(2, project.getUser().getId());
         instruction.setString(3, project.getDescription());
         instruction.setString(4, project.getPlan());
+        instruction.setString(5, project.getStatus());
         int result = instruction.executeUpdate();
         instruction.close();
         return result == 1;
+    }
+
+    public List searchProjects() throws SQLException {
+        List<Project> projects = new ArrayList<>();
+        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, p.id_informacoes, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id)";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.executeQuery();
+        ResultSet result = instruction.getResultSet();
+        while (result.next()) {
+            User user = new User(result.getLong("id_usuario"), result.getString("u.nome"), result.getString("email"));
+            Project project = new Project(
+                    result.getLong("id"),
+                    result.getString("nome"),
+                    result.getString("descricao"),
+                    user,
+                    result.getString("plano"),
+                    result.getString("prazo"),
+                    result.getString("prioridade"),
+                    result.getString("status"),
+                    result.getInt("porcentagem"),
+                    result.getInt("id_informacoes")
+            );
+            projects.add(project);
+        }
+        return projects;
     }
 }
