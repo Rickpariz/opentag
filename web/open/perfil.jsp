@@ -44,7 +44,7 @@
           <div class="sidebar-header header-cover">
               <div class="top-bar"></div>
               <div class="sidebar-image">
-                  <img src="" data-image="/opentagv.1/Image/${userSession.pictureProfile}">
+                  <img src="" data-image="/opentag/Image/${userSession.pictureProfile}">
                   ${userSession.name}
               </div>
               <span class="sidebar-brand">
@@ -111,7 +111,7 @@
 	        </div>
           <div class="">
             <div class="col-md-3">
-              <img src="" data-image="/opentagv.1/Image/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
+              <img src="" data-image="/opentag/Image/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
               <br/>
               <br/>
               <form class="text-center" id="upload">

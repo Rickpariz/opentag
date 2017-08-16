@@ -23,6 +23,19 @@
   padding: 0px !important;
 }
 
+.radio input[type=radio]:checked ~ .circle {
+    border-color: #b08064 !important;
+}
+
+.radio input[type=radio]:checked ~ .check {
+    background-color: #b08064 !important;
+}
+
+.section-modal{
+  padding: 4.3rem;
+  padding-bottom: 1.8rem;
+  padding-top: 1.8rem;
+}
 /*.input-group .input-group-addon {
   padding: 12px 15px;
 }*/

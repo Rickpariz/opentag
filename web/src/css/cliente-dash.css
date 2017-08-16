@@ -13,11 +13,7 @@
   color: #3C4858;
 }
 
-.section-modal{
-  padding: 4.3rem;
-  padding-bottom: 2rem;
-  padding-top: 2rem; 
-}
+
 
 .radio input[type=radio]:checked ~ .circle {
     border-color: #b08064 !important;

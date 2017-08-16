@@ -1,7 +1,28 @@
+.chip {
+  display: inline-block;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #e4e4e4;
+  margin-top: 1.5rem;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
 .fixed-table-pagination .pagination-detail, .fixed-table-pagination div.pagination {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 15px !important;
+}
+
+.nav-tabs-custom .nav-tabs {
+  display: table !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {

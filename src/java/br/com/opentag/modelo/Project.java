@@ -19,7 +19,6 @@ public class Project {
     private String priority;
     private String status;
     private int percentege;
-    private int id_information;
 
     public Project(String name, String description, User user, String plan, String status) {
         this.name = name;
@@ -29,7 +28,7 @@ public class Project {
         this.status = status;
     }
 
-    public Project(long id, String name, String description, User user, String plan, String deadline, String priority, String status, int percentege, int id_information) {
+    public Project(long id, String name, String description, User user, String plan, String deadline, String priority, String status, int percentege) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -39,8 +38,20 @@ public class Project {
         this.priority = priority;
         this.status = status;
         this.percentege = percentege;
-        this.id_information = id_information;
     }
+
+    public Project(long id, String name, String description, String plan, String deadline, String priority, String status, int percentege) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.plan = plan;
+        this.deadline = deadline;
+        this.priority = priority;
+        this.status = status;
+        this.percentege = percentege;
+    }
+
+    
     
     // Getters
 
@@ -117,13 +128,7 @@ public class Project {
         this.percentege = percentege;
     }
 
-    public int getId_information() {
-        return id_information;
-    }
-
-    public void setId_information(int id_information) {
-        this.id_information = id_information;
-    }
+    
     
     
 }

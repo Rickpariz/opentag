@@ -44,7 +44,7 @@
           <div class="sidebar-header header-cover">
               <div class="top-bar"></div>
               <div class="sidebar-image">
-                  <img src="" data-image="/opentagv.1/Image/${userSession.pictureProfile}">
+                  <img src="" data-image="/opentag/Image/${userSession.pictureProfile}">
                   ${userSession.name}
               </div>
               <span class="sidebar-brand">
@@ -111,10 +111,10 @@
 	        </div>
           <div class="">
             <div class="col-md-3">
-              <img src="" data-image="/opentagv.1/Image/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
+              <img src="" data-image="/opentag/Image/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
               <br/>
               <form class="text-center" id="upload">
-                <input type="hidden" id="UpdateProfile" value="/opentagv.1/dashboard/updateProfile">
+                <input type="hidden" id="UpdateProfile" value="/opentag/dashboard/updateProfile">
                 <label class="file" title="">
                   <input type="file" id="perfil" name="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
                 </label>

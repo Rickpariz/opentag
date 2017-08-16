@@ -6,6 +6,7 @@
 package br.com.opentag.dao;
 
 import br.com.opentag.modelo.Project;
+import br.com.opentag.modelo.Tools;
 import br.com.opentag.modelo.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,7 +42,7 @@ public class ProjectDAO {
 
     public List searchProjects() throws SQLException {
         List<Project> projects = new ArrayList<>();
-        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, p.id_informacoes, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id)";
+        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id)";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         instruction.executeQuery();
         ResultSet result = instruction.getResultSet();
@@ -53,14 +54,58 @@ public class ProjectDAO {
                     result.getString("descricao"),
                     user,
                     result.getString("plano"),
-                    result.getString("prazo"),
+                    Tools.formattedDate(result.getString("prazo")),
                     result.getString("prioridade"),
                     result.getString("status"),
-                    result.getInt("porcentagem"),
-                    result.getInt("id_informacoes")
+                    result.getInt("porcentagem")
             );
             projects.add(project);
         }
         return projects;
+    }
+
+    public Project searchProjectByid(int id) throws SQLException {
+        Project project = null;
+        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id) where p.id = ?";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.setInt(1, id);
+        instruction.executeQuery();
+        ResultSet result = instruction.getResultSet();
+        if (result.next()) {
+            User user = new User(result.getLong("id_usuario"), result.getString("u.nome"), result.getString("email"));
+            project = new Project(
+                    result.getLong("id"),
+                    result.getString("nome"),
+                    result.getString("descricao"),
+                    user,
+                    result.getString("plano"),
+                    Tools.formattedDate(result.getString("prazo")),
+                    result.getString("prioridade"),
+                    result.getString("status"),
+                    result.getInt("porcentagem")
+            );
+        } 
+        
+        return project;
+    }
+
+    public boolean updateProject(Project project) throws SQLException {
+        String sql = "update projetos set nome = ?,"
+                + " descricao = ?, plano = ?, status = ?,"
+                + " prioridade = ?, prazo = ?,"
+                + " porcentagem = ? where id = ? ";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.setString(1, project.getName());
+        instruction.setString(2, project.getDescription());
+        instruction.setString(3, project.getPlan());
+        instruction.setString(4, project.getStatus());
+        instruction.setString(5, project.getPriority());
+        instruction.setString(6, project.getDeadline());
+        instruction.setInt(7, project.getPercentege());
+        instruction.setLong(8, project.getId());
+        int result = instruction.executeUpdate();
+        instruction.close();
+
+        return result == 1;
     }
 }

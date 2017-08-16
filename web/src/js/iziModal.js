@@ -59,7 +59,7 @@ if (typeof jQuery === "undefined") {
 			this.$element = $(element);
 
 			if(this.$element.attr('id') !== undefined && this.$element.attr('id') !== ''){
-				this.id = this.$element.attr('id');	
+				this.id = this.$element.attr('id');
 			} else {
 				this.id = PLUGIN_NAME+Math.floor((Math.random() * 10000000) + 1);
 				this.$element.attr('id', this.id);
@@ -124,7 +124,7 @@ if (typeof jQuery === "undefined") {
 			if (options.closeButton === true) {
 				this.$header.find('.'+PLUGIN_NAME+'-header-buttons').append('<a href="javascript:void(0)" class="'+PLUGIN_NAME+'-button '+PLUGIN_NAME+'-button-close" data-'+PLUGIN_NAME+'-close></a>');
 			}
-            
+
             if (options.fullscreen === true) {
             	this.$header.find('.'+PLUGIN_NAME+'-header-buttons').append('<a href="javascript:void(0)" class="'+PLUGIN_NAME+'-button '+PLUGIN_NAME+'-button-fullscreen" data-'+PLUGIN_NAME+'-fullscreen></a>');
 
@@ -141,7 +141,7 @@ if (typeof jQuery === "undefined") {
 
             if (options.iframe === true) {
                 this.$element.html('<div class="'+PLUGIN_NAME+'-wrap"><div class="'+PLUGIN_NAME+'-content"><iframe class="'+PLUGIN_NAME+'-iframe"></iframe>' + this.content + "</div></div>");
-                
+
 	            if (options.iframeHeight !== null) {
 	                this.$element.find('.'+PLUGIN_NAME+'-iframe').css('height', options.iframeHeight);
 	            }
@@ -224,7 +224,7 @@ if (typeof jQuery === "undefined") {
 
 
 				if(isNaN(options.width)){
-					
+
 					if( String(options.width).indexOf("%") != -1){
 						medida = "%";
 					} else {
@@ -235,10 +235,10 @@ if (typeof jQuery === "undefined") {
 	                'margin-left': -(wClear / 2) + medida,
 	                'max-width': parseInt(wClear) + medida
 	            });
-	            
+
 	        	that.width = that.$element.outerWidth();
 
-	        	if(parseInt(wClear) > that.width){	
+	        	if(parseInt(wClear) > that.width){
 	        		that.width = parseInt(wClear);
 	        	}
 
@@ -277,7 +277,7 @@ if (typeof jQuery === "undefined") {
 			if( groupName !== undefined && groupName !== this.group.name){
 				group = groupName;
 				this.group.name = group;
-				this.$element.attr('data-'+PLUGIN_NAME+'-group', group);				
+				this.$element.attr('data-'+PLUGIN_NAME+'-group', group);
 			}
 			if(group !== undefined && group !== ""){
 
@@ -310,7 +310,7 @@ if (typeof jQuery === "undefined") {
 			var that = this;
 
 			function opened(){
-			    
+
 			    // console.info('[ '+PLUGIN_NAME+' | '+that.id+' ] Opened.');
 
 				that.state = STATES.OPENED;
@@ -381,7 +381,7 @@ if (typeof jQuery === "undefined") {
 				// console.info('[ '+PLUGIN_NAME+' | '+this.id+' ] Opening...');
 
 				if(this.options.iframe === true){
-					
+
 					this.$element.find('.'+PLUGIN_NAME+'-content').addClass(PLUGIN_NAME+'-content-loader');
 
 					this.$element.find('.'+PLUGIN_NAME+'-iframe').on('load', function(){
@@ -413,7 +413,7 @@ if (typeof jQuery === "undefined") {
 
 				if (this.options.onOpening && typeof(this.options.onOpening) === "function") {
 			        this.options.onOpening(this);
-			    }			    
+			    }
 				(function open(){
 
 			    	if(that.group.ids.length > 1 ){
@@ -432,7 +432,7 @@ if (typeof jQuery === "undefined") {
 			    			that.$navigate.find('.'+PLUGIN_NAME+'-navigate-prev').css('left', 0);
 			    			that.$navigate.find('.'+PLUGIN_NAME+'-navigate-next').css('right', 0);
 				    	}
-			    		
+
 			    		var loop;
 						if(that.group.index === 0){
 
@@ -511,7 +511,7 @@ if (typeof jQuery === "undefined") {
 		                    updateProgress: function()
 		                    {
 								if(!that.isPaused){
-									
+
 									that.progressBar.currentTime = that.progressBar.currentTime+10;
 
 				                    var percentage = ((that.progressBar.hideEta - (that.progressBar.currentTime)) / that.progressBar.maxHideTime) * 100;
@@ -547,9 +547,9 @@ if (typeof jQuery === "undefined") {
 				if (this.options.focusInput){
 			    	this.$element.find(':input:not(button):enabled:visible:first').focus(); // Focus on the first field
 				}
-				
+
 				(function updateTimer(){
-			    	that.recalculateLayout();					
+			    	that.recalculateLayout();
 				    that.timer = setTimeout(updateTimer, 300);
 				})();
 
@@ -578,7 +578,7 @@ if (typeof jQuery === "undefined") {
 			var that = this;
 
 			function closed(){
-                
+
                 // console.info('[ '+PLUGIN_NAME+' | '+that.id+' ] Closed.');
                 that.state = STATES.CLOSED;
                 that.$element.trigger(STATES.CLOSED);
@@ -592,8 +592,8 @@ if (typeof jQuery === "undefined") {
 					if(isMobile){
 						$('body').css('overflow','auto');
 					}
-				}                
-				
+				}
+
 				if (that.options.onClosed && typeof(that.options.onClosed) === "function") {
 			        that.options.onClosed(that);
 			    }
@@ -629,7 +629,7 @@ if (typeof jQuery === "undefined") {
 				if( typeof param == 'object' ){
 					if(param.transition !== undefined || param.transitionOut !== undefined){
 						transitionOut = param.transition || param.transitionOut;
-					} 
+					}
 				}
 
 				var attachedClass = '';
@@ -653,12 +653,12 @@ if (typeof jQuery === "undefined") {
 						attachedClass,
 						this.options.rtl ? PLUGIN_NAME+'-rtl' : ''
 					].join(' '));
-					
+
 					this.$overlay.attr('class', PLUGIN_NAME + "-overlay " + this.options.transitionOutOverlay);
 					this.$navigate.attr('class', PLUGIN_NAME + "-navigate " + this.options.transitionOutOverlay);
 
 	                this.$element.one(animationEvent, function () {
-	                    
+
 	                    if( that.$element.hasClass(transitionOut) ){
 	                        that.$element.removeClass(transitionOut + " transitionOut").hide();
 	                    }
@@ -700,7 +700,7 @@ if (typeof jQuery === "undefined") {
 			}
 
         	this.close({transition:transitionOut});
-            
+
 			setTimeout(function(){
 
 				var loop = $('.'+PLUGIN_NAME+'[data-'+PLUGIN_NAME+'-group="'+that.group.name+'"][data-'+PLUGIN_NAME+'-loop]').length;
@@ -724,7 +724,7 @@ if (typeof jQuery === "undefined") {
 
 								modals.in = $("#"+that.group.ids[index]).data().iziModal;
 								if(typeof modals.in !== 'undefined'){
-									$("#"+that.group.ids[index]).iziModal('open', { transition: transitionIn });								
+									$("#"+that.group.ids[index]).iziModal('open', { transition: transitionIn });
 									break;
 								}
 							}
@@ -750,7 +750,7 @@ if (typeof jQuery === "undefined") {
             	modal = $(e.currentTarget);
             	transitionIn = modal.attr('data-'+PLUGIN_NAME+'-transitionIn');
             	transitionOut = modal.attr('data-'+PLUGIN_NAME+'-transitionOut');
-            	
+
 			} else if(e !== undefined){
 
 				if(e.transitionIn !== undefined){
@@ -787,7 +787,7 @@ if (typeof jQuery === "undefined") {
 
 								modals.in = $("#"+that.group.ids[index]).data().iziModal;
 								if(typeof modals.in !== 'undefined'){
-									$("#"+that.group.ids[index]).iziModal('open', { transition: transitionIn });								
+									$("#"+that.group.ids[index]).iziModal('open', { transition: transitionIn });
 									break;
 								}
 							}
@@ -824,7 +824,7 @@ if (typeof jQuery === "undefined") {
 				.off('.'+PLUGIN_NAME)
 				.removeData(PLUGIN_NAME)
 				.attr('style', '');
-			
+
 			this.$overlay.remove();
 			this.$navigate.remove();
 			this.$element.trigger(STATES.DESTROYED);
@@ -855,7 +855,7 @@ if (typeof jQuery === "undefined") {
 
 
 			if(subtitle == ''){
-				
+
 				this.$header.find('.'+PLUGIN_NAME+'-header-subtitle').remove();
 				this.$header.addClass(PLUGIN_NAME+'-noSubtitle');
 
@@ -905,7 +905,7 @@ if (typeof jQuery === "undefined") {
 		},
 
 		setTransitionIn: function(transition){
-			
+
 			this.options.transitionIn = transition;
 		},
 
@@ -924,6 +924,7 @@ if (typeof jQuery === "undefined") {
 			var that = this;
 			this.$element.find('.'+PLUGIN_NAME+'-loader').removeClass(this.options.transitionInOverlay).addClass(this.options.transitionOutOverlay);
 			this.$element.find('.'+PLUGIN_NAME+'-loader').one(animationEvent, function () {
+                that.$element.find('.'+PLUGIN_NAME+'-loader').removeClass(that.options.transitionOutOverlay).remove();
                 that.$element.find('.'+PLUGIN_NAME+'-loader').removeClass(that.options.transitionOutOverlay).remove();
             });
 		},
@@ -975,7 +976,7 @@ if (typeof jQuery === "undefined") {
 
 
 	                if (windowHeight > (contentHeight + this.headerHeight) && this.isFullscreen !== true) {
-	                	
+
 	                	if (this.options.iframe !== true) {
 							$('html').removeClass(PLUGIN_NAME+'-isAttached');
 							this.$element.removeClass('isAttached');
@@ -1019,7 +1020,7 @@ if (typeof jQuery === "undefined") {
 
                     var scrollTop = this.$element.find('.'+PLUGIN_NAME+'-wrap').scrollTop(),
                     	internoHeight = this.$element.find('.'+PLUGIN_NAME+'-content').innerHeight(),
-                    	externoHeight = this.$element.find('.'+PLUGIN_NAME+'-wrap').innerHeight();	
+                    	externoHeight = this.$element.find('.'+PLUGIN_NAME+'-wrap').innerHeight();
 
 	                if ((externoHeight + scrollTop) < (internoHeight - 50)) {
 	                    this.$element.addClass('hasScroll');
@@ -1045,11 +1046,11 @@ if (typeof jQuery === "undefined") {
 		if(autoOpenModal === 0){
 
 			if(modalHash !== ""){
-				
+
 				$.each( $('.'+PLUGIN_NAME) , function(index, modal) {
 					 var state = $(modal).iziModal('getState');
 					 if(state == 'opened' || state == 'opening'){
-					 	
+
 					 	if( "#" + $(modal).attr('id') !== modalHash){
 					 		$(modal).iziModal('close');
 					 	}
@@ -1142,7 +1143,7 @@ if (typeof jQuery === "undefined") {
 		var objs = this;
 
 		for (var i=0; i<objs.length; i++) {
-			
+
 			var $this = $(objs[i]);
 			var data = $this.data(PLUGIN_NAME);
 			var options = $.extend({}, $.fn[PLUGIN_NAME].defaults, $this.data(), typeof option == 'object' && option);
@@ -1158,13 +1159,13 @@ if (typeof jQuery === "undefined") {
 			if (options.autoOpen){ // Automatically open the modal if autoOpen setted true or ms
 
 				if( !isNaN(parseInt(options.autoOpen)) ){
-					
+
 					setTimeout(function(){
 						data.open();
 					}, options.autoOpen);
 
 				} else if(options.autoOpen === true ) {
-					
+
 					setTimeout(function(){
 						data.open();
 					}, 0);
