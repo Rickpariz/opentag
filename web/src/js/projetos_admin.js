@@ -60,7 +60,8 @@ $(document).ready(function() {
         search: true,
         pagination: true,
         pageSize: 4,
-        cache: false
+        cache: false,
+        sortOrder: "desc"
       });
       myStyleTable();
     }
@@ -89,11 +90,21 @@ $(document).ready(function() {
               url: "/opentag/tag",
               method: "post",
               data: data,
-              success: function(json) {
-                if (json.status) {
-                  swal("Editado !", json.message, "success");
+              success: function(data) {
+                var object = data.objects[0];
+                $("#projetos").bootstrapTable("updateByUniqueId", {
+                  id: object.id,
+                  row: object
+                });
+                if (data.objects[1].status) {
+                  swal({
+                    title: "Editado !",
+                    text: data.objects[1].message,
+                    type: "success",
+                    confirmButtonText: "Ok",
+                  });
                 } else {
-                  sweetAlert("Oops...", json.message, "error");
+                  sweetAlert("Oops...", data.objects[1].message, "error");
                 }
               },
               error: function() {
@@ -149,7 +160,6 @@ $(document).ready(function() {
 });
 
 function validaCampos() {
-  console.log("validando campos");
   if ($("#nome-projeto").val() == "" || $("#descricao-projeto").val() == "" || $("#prazo").val() == "") {
     $("#erro").removeClass("hidden");
     return false;
@@ -176,13 +186,13 @@ function myStyleTable() {
 
 function myCustomStatus(value, row, index) {
   var label;
-  if ((value == "Esperando Confirmação") || (value == "Processando pagamento")) {
+  if ((value == "Esperando confirmação") || (value == "Processando pagamento")) {
     label = '<span class="label label-info">' + value + '</span>';
   } else if (value == "Pagamento em aberto") {
     label = '<span class="label label-warning">' + value + '</span>'
   } else if ((value == "Em desenvolvimento") || (value == "Concluido")) {
     label = '<span class="label label-success">' + value + '</span>'
-  } else {
+  } else if(value == "Cancelado"){
     label = '<span class="label label-danger">' + value + '</span>'
   }
 

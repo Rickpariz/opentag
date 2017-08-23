@@ -1,3 +1,82 @@
+.fixed-table-pagination .pagination-detail, .fixed-table-pagination div.pagination {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 15px !important;
+}
+
+.nav-tabs-custom .nav-tabs {
+  display: table !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle !important;
+  border-top: 1px solid #ddd;
+}
+
+.fixed-table-body {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  height: 100%;
+}
+
+.dropdown-menu li a:hover, .dropdown-menu li a:focus, .dropdown-menu li a:active {
+  background-color: #b08d79 !important;
+  color: #FFFFFF;
+}
+
+#projetos thead th {
+  font-weight: 600;
+  font-style: italic;
+  color: #696969;
+  text-transform: uppercase;
+}
+
+#projetos tbody td {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 11px;
+  color: #9fa7ad;
+  text-transform: uppercase;
+}
+
+.bootstrap-table {
+  background: white;
+  margin-top: 5%;
+  padding: 30px;
+  padding-top: 100px;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+.custom-header-table{
+    position: absolute;
+    width: 86%;
+    top: -2.5%;
+    box-shadow: 0 16px 38px -12px rgba(226, 210, 210, 0.56), 0 4px 25px 0px rgba(142, 135, 135, 0.12), 0 8px 10px -5px rgba(167, 167, 167, 0.2);
+    margin: 15px;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: white;
+}
+
+.search .input-group .input-group-addon {
+    border: 0;
+    background: transparent;
+    padding: 0px;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #8a5f46;
+    border-color: #8a5f46;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+
 .tutorial .icon i, .icon i {
   font-size: 55px;
   border: 1px solid #E5E5E5;

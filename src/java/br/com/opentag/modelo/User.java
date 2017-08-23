@@ -9,7 +9,7 @@ package br.com.opentag.modelo;
  *
  * @author Ricardo Ferreira Pariz Silva
  */
-public class User {
+public class User extends Entity{
 
     private long id;
     private String name;
@@ -18,9 +18,9 @@ public class User {
     private String type;
     private String pictureProfile;
     private String pictureCover;
+    private String access;
     // Constructs
 
-      
     public User(String email, String password) {
         this.email = email;
         this.password = password;
@@ -39,7 +39,15 @@ public class User {
     
 
     // Getters and Setters
+    
+     public String getAccess() {
+        return access;
+    }
 
+    public void setAccess(String access) {
+        this.access = access;
+    }
+    
     public void setPictureProfile(String pictureProfile) {
         this.pictureProfile = pictureProfile;
     }

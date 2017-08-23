@@ -11,23 +11,19 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
-      <title>Projetos - ADM
-      </title>
+      <title>Projetos</title>
       <link rel="icon" href="../../imgs/simbolo.png" type="image/x-icon"/>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
       <link href="https://fonts.googleapis.com/css?family=Oswald:200" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
-        <link href="../../src/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="../../src/css/material-kit.css" rel="stylesheet"/>
-        <link href="../../src/css/dashboard.css" rel="stylesheet"/>
-        <link href="../../src/css/iziToast.min.css" rel="stylesheet"/>
-        <link href="../../src/css/iziModal.css" rel="stylesheet"/>
-        <link href="../../src/css/sweetalert.css" rel="stylesheet"/>
-        <link href="../../src/css/bootstrap-table.min.css" rel="stylesheet"/>
-        <link href="../../src/css/admin_dash.css" rel="stylesheet"/>
-
-        <style></style>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+      <link href="../../src/css/bootstrap.min.css" rel="stylesheet"/>
+      <link href="../../src/css/material-kit.css" rel="stylesheet"/>
+      <link href="../../src/css/dashboard.css" rel="stylesheet"/>
+      <link href="../../src/css/iziModal.css" rel="stylesheet"/>
+      <link href="../../src/css/sweetalert.css" rel="stylesheet"/>
+      <link href="../../src/css/bootstrap-table.min.css" rel="stylesheet"/>
+      <link href="../../src/css/admin_dash.css" rel="stylesheet"/>
       </head>
       <body>
         <nav class="navbar navbar-custom">
@@ -62,13 +58,13 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="cliente">
                       <i class="sidebar-icon material-icons">face</i>
                       Clientes
                     </a>
                   </li>
                   <li class="active">
-                    <a href="#">
+                    <a href="projetos">
                       <i class="sidebar-icon material-icons">description</i>
                       Projetos
                     </a>
@@ -105,10 +101,10 @@
               <div class="row">
                 <div class="col-sm-11">
                   <div class="container-table">
-                    <table id="projetos">
+                    <table id="projetos" data-unique-id="id">
                       <thead>
                         <tr>
-                          <th data-field="id" data-align="center" class="text-center hide">ID</th>
+                          <th data-field="id" data-sort-order="desc" data-align="center" data-visible="false" class="text-center">ID</th>
                           <th data-field="name" data-align="center">Nome</th>
                           <th data-field="user.name" data-align="center">Cliente</th>
                           <th data-field="description" data-align="center">Descrição</th>
@@ -282,7 +278,6 @@
           <script src="../../src/js/bootstrap-datepicker.js" type="text/javascript"></script>
           <script src="../../src/js/nouislider.min.js" type="text/javascript"></script>
           <script src="../../src/js/material.min.js" type="text/javascript"></script>
-          <script src="../../src/js/iziToast.min.js"></script>
           <script src="../../src/js/bootstrap-table.min.js" type="text/javascript"></script>
           <script src="../../src/js/moment.js"></script>
           <script src="../../src/js/iziModal.js"></script>

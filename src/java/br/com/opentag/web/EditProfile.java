@@ -56,6 +56,8 @@ public class EditProfile implements Run {
                 // sobreescrevendo os valores editados
                 userSession.setEmail(userEdit.getEmail());
                 userSession.setName(userEdit.getName());
+                // apagando sessão antiga
+                request.getSession().removeAttribute("userSession");
                 // Colocando o usuario editado na sessão
                 request.getSession().setAttribute("userSession", userSession);
             }

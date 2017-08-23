@@ -6,17 +6,15 @@
 package br.com.opentag.web;
 
 import br.com.opentag.dao.ConnectionPool;
-import br.com.opentag.dao.ProjectDAO;
+import br.com.opentag.dao.UserDAO;
 import br.com.opentag.interfaces.Run;
 import br.com.opentag.modelo.MyJsonResponse;
-import br.com.opentag.modelo.Project;
 import br.com.opentag.modelo.Response;
-import br.com.opentag.modelo.Tools;
+import br.com.opentag.modelo.User;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,39 +23,30 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ricardo Ferreira Pariz Silva
  */
-public class UpdateProject implements Run {
+public class UpdateAccessClient implements Run {
 
     @Override
     public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MyJsonResponse jsonResponse = new MyJsonResponse();
-        int porc = Integer.parseInt(request.getParameter("porcentagem-projeto"));
         Gson gson = new Gson();
         Response resp = new Response();
-        Project project = new Project(Long.parseLong(request.getParameter("id-projeto")),
-                request.getParameter("nome-projeto"),
-                request.getParameter("descricao-projeto"),
-                request.getParameter("plano"),
-                Tools.converteDate(request.getParameter("prazo-projeto")), request.getParameter("prioridade"),
-                request.getParameter("status"),
-                porc);
-
+        User user = new User(Long.parseLong(request.getParameter("id")),
+                request.getParameter("nome"),
+                request.getParameter("email"));
+        user.setAccess(request.getParameter("acesso"));
         try {
             Connection connection = new ConnectionPool().getConnection();
-            ProjectDAO dao = new ProjectDAO(connection);
-            if (dao.updateProject(project)) {
+            UserDAO dao = new UserDAO(connection);
+            boolean update = dao.updateAccess(user);
+            if (update) {
                 jsonResponse.setStatus(true);
-                jsonResponse.setMessage("O projeto foi Editado com sucesso !");
-                // formatando a data
-                project.setDeadline(request.getParameter("prazo-projeto"));
-                resp.setObjects(project);
-                resp.setObjects(jsonResponse);                
+                jsonResponse.setMessage("O Acesso do Cliente foi Editado com Sucesso !");
+                resp.setObjects(user);
+                resp.setObjects(jsonResponse);
             }
-        } catch (SQLIntegrityConstraintViolationException ex) {
-            jsonResponse.setStatus(false);
-            jsonResponse.setMessage("Este nome já foi usado, digite outro");
         } catch (SQLException e) {
             jsonResponse.setStatus(false);
-            jsonResponse.setMessage("Erro ao editar no banco de dados");
+            jsonResponse.setMessage("Erro ao Editar no banco de dados");
             System.out.println(e.getMessage());
         } catch (Exception e) {
             jsonResponse.setStatus(false);

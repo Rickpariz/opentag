@@ -42,7 +42,7 @@ public class ProjectDAO {
 
     public List searchProjects() throws SQLException {
         List<Project> projects = new ArrayList<>();
-        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id)";
+        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id) order by id desc";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         instruction.executeQuery();
         ResultSet result = instruction.getResultSet();
@@ -84,8 +84,8 @@ public class ProjectDAO {
                     result.getString("status"),
                     result.getInt("porcentagem")
             );
-        } 
-        
+        }
+
         return project;
     }
 
@@ -107,5 +107,28 @@ public class ProjectDAO {
         instruction.close();
 
         return result == 1;
+    }
+
+    public List<Project> searchProjectByIdClient(int id) throws SQLException {
+        List<Project> projects = new ArrayList<>();
+        String sql = "select * from projetos where id_usuario = ? order by id desc";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.setInt(1, id);
+        instruction.executeQuery();
+        ResultSet result = instruction.getResultSet();
+        while (result.next()) {
+            Project project = new Project(
+                    result.getLong("id"),
+                    result.getString("nome"),
+                    result.getString("descricao"),
+                    result.getString("plano"),
+                    Tools.formattedDate(result.getString("prazo")),
+                    result.getString("status"),
+                    result.getInt("porcentagem")
+            );
+            projects.add(project);
+        }
+        
+        return projects;
     }
 }

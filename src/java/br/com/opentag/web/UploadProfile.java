@@ -62,6 +62,8 @@ public class UploadProfile extends HttpServlet {
                 if (new UserDAO(connection).insertPictureProfile(user.getId(), img.getName())) {
                     jsonResponse.setStatus(true);
                     jsonResponse.setMessage("Imagem alterada com sucesso ! a pagina será recarregada");
+                    // apagando sessão antiga
+                    request.getSession().removeAttribute("userSession");
                     // salvando user com dados atualizados na sessão
                     user.setPictureProfile(img.getName());
                     request.getSession().setAttribute("userSession", user);

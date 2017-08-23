@@ -6,9 +6,9 @@
 package br.com.opentag.web;
 
 import br.com.opentag.dao.ConnectionPool;
-import br.com.opentag.dao.ProjectDAO;
+import br.com.opentag.dao.UserDAO;
 import br.com.opentag.interfaces.Run;
-import br.com.opentag.modelo.Project;
+import br.com.opentag.modelo.User;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,26 +21,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ricardo Ferreira Pariz Silva
  */
-public class SearchProjectById implements Run{
-    
-    
-    
+public class SearchUserById implements Run {
+
     @Override
     public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Gson gson = new Gson();
         String json = null;
-        try{
+        try {
             Connection connection = new ConnectionPool().getConnection();
-            ProjectDAO dao = new ProjectDAO(connection);
-            Project project = dao.searchProjectByid(Integer.parseInt(request.getParameter("id")));
-            if (project != null) {
-                json = gson.toJson(project);
+            UserDAO dao = new UserDAO(connection);
+            User user = dao.searchById(Long.parseLong(request.getParameter("id")));
+            if (user != null) {
+                json = gson.toJson(user);
             } else {
-                System.out.println("Error ! Project is null");
+                System.out.println("Error ! User is null");
             }
-        } catch(SQLException e){
-            System.out.println("Erro no Banco de dados: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error in Data Base" + e.getMessage());
         }
+
         return json;
     }
 
@@ -48,5 +47,5 @@ public class SearchProjectById implements Run{
     public String getMethod() {
         return "ajax";
     }
-    
+
 }

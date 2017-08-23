@@ -15,16 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author bahia
+ * @author Ricardo Ferreira Pariz Silva
  */
-@WebServlet(name = "map_admin_dash_projetos", urlPatterns = {"/admin/dashboard/projetos"})
-public class map_admin_dash_projetos extends HttpServlet {
-
+@WebServlet(name = "map_admin_dash_cliente", urlPatterns = {"/admin/dashboard/cliente"})
+public class map_admin_dash_cliente extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../../open/adm/projetos.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../../open/adm/cliente.jsp");
         dispatcher.forward(request, response);
-
     }
 }

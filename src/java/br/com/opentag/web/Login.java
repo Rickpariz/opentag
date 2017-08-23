@@ -9,8 +9,6 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,22 +35,25 @@ public class Login implements Run {
             if (userCheck == null || !BCrypt.checkpw(password, userCheck.getPassword())) {
                 jsonResponse.setStatus(false);
                 jsonResponse.setMessage("Email ou Senha Inválido");
-                System.out.println(jsonResponse.getMessage());
-
             } else {
-
-                jsonResponse.setStatus(true);
-                HttpSession session = request.getSession();
-                
-                session.setAttribute("userSession", userCheck);
-                if (userCheck.getType().equals("adm")) {
-                    jsonResponse.setMessage("admin/dashboard");
+                if (!"liberado".equals(userCheck.getAccess())) {
+                    jsonResponse.setStatus(false);
+                    jsonResponse.setMessage("Acesso bloqueado para essa conta, entre em contato com a empresa !");
                 } else {
-                    jsonResponse.setMessage("dashboard");
+                    jsonResponse.setStatus(true);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userSession", userCheck);
+                    if (userCheck.getType().equals("adm")) {
+                        jsonResponse.setMessage("admin/dashboard");
+                    } else {
+                        jsonResponse.setMessage("dashboard");
+                    }
                 }
+
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            jsonResponse.setStatus(false);
+            jsonResponse.setMessage("Erro no banco de dados");
         }
 
         Gson gson = new Gson();
@@ -64,5 +65,5 @@ public class Login implements Run {
     public String getMethod() {
         return "ajax";
     }
-   
+
 }

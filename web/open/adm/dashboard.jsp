@@ -53,7 +53,7 @@
                   </a>
               </li>
               <li>
-                  <a href="#">
+                  <a href="dashboard/cliente">
                       <i class="sidebar-icon material-icons">face</i>
                       Clientes
                   </a>

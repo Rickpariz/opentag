@@ -9,7 +9,7 @@ package br.com.opentag.modelo;
  *
  * @author Ricardo Ferreira Pariz Silva
  */
-public class MyJsonResponse{
+public class MyJsonResponse extends Entity{
     private boolean status;
     private String message;
 

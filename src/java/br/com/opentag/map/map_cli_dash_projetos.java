@@ -17,14 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author bahia
  */
-@WebServlet(name = "map_admin_dash_projetos", urlPatterns = {"/admin/dashboard/projetos"})
-public class map_admin_dash_projetos extends HttpServlet {
-
+@WebServlet(name = "map_cli_dash_projetos", urlPatterns = {"/dashboard/projetos"})
+public class map_cli_dash_projetos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../../open/adm/projetos.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../open/projetos.jsp");
         dispatcher.forward(request, response);
-
     }
 }

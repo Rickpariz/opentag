@@ -34,7 +34,7 @@ public class NewProject implements Run {
         try {
             User user = new User(Long.parseLong(request.getParameter("id_user")), request.getParameter("name_user"), request.getParameter("email_user"));
             Project project = new Project(request.getParameter("nome"), request.getParameter("descricao"),
-            user, request.getParameter("plano"), "Esperando Confirmação");
+            user, request.getParameter("plano"), "Esperando confirmação");
             Connection connection = new ConnectionPool().getConnection();
             ProjectDAO dao = new ProjectDAO(connection);
             if(dao.enterBasicInformation(project)){

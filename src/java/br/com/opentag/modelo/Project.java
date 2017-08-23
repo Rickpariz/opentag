@@ -9,7 +9,7 @@ package br.com.opentag.modelo;
  *
  * @author Ricardo Ferreira Pariz Silva
  */
-public class Project {
+public class Project extends Entity{
     private long id;
     private String name;
     private String description;
@@ -47,6 +47,16 @@ public class Project {
         this.plan = plan;
         this.deadline = deadline;
         this.priority = priority;
+        this.status = status;
+        this.percentege = percentege;
+    }
+
+    public Project(long id, String name, String description, String plan, String deadline, String status, int percentege) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.plan = plan;
+        this.deadline = deadline;
         this.status = status;
         this.percentege = percentege;
     }

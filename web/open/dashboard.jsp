@@ -51,13 +51,13 @@
           <form action="tag" method="post" id="logout">
           <ul class="nav sidebar-nav">
               <li class="active">
-                  <a href="#">
+                  <a href="dashboard">
                       <i class="material-icons sidebar-icon">dashboard</i>
                       Dashboard
                   </a>
               </li>
               <li>
-                  <a href="#">
+                  <a href="dashboard/projetos">
                       <i class="sidebar-icon material-icons">description</i>
                       Projetos
                   </a>

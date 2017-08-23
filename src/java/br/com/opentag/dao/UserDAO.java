@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -38,6 +40,7 @@ public class UserDAO {
             user.setName(resultSet.getString("nome"));
             user.setPictureProfile(resultSet.getString("pictureProfile"));
             user.setPictureCover(resultSet.getString("pictureCover"));
+            user.setAccess(resultSet.getString("acesso"));
             return user;
         }
 
@@ -109,6 +112,47 @@ public class UserDAO {
         int result = instruction.executeUpdate();
         instruction.close();
 
+        return result == 1;
+    }
+
+    public List<User> searchUsersClient() throws SQLException {
+        List<User> users = new ArrayList<>();
+        String sql = "Select * from usuarios where tipo = ? order by id desc";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.setString(1, "cli");
+        instruction.executeQuery();
+        ResultSet result = instruction.getResultSet();
+        while(result.next()){
+            User user = new User(result.getLong("id"),
+                    result.getString("nome"),
+                    result.getString("email"));
+            user.setAccess(result.getString("acesso"));
+            users.add(user);
+        }
+        return users;
+    }
+
+    public User searchById(long id) throws SQLException {
+        User user = null;
+        String sql = "select * from usuarios where id=?";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.setLong(1, id);
+        instruction.executeQuery();
+        ResultSet result = instruction.getResultSet();
+        if (result.next()) {
+            user = new User(result.getLong("id"), result.getString("nome"), result.getString("email"));
+            user.setAccess(result.getString("acesso"));
+        }
+        return user;
+    }
+
+    public boolean updateAccess(User user) throws SQLException {
+        String sql = "update usuarios set acesso= ? where id = ?";
+        PreparedStatement instruction = this.connection.prepareStatement(sql);
+        instruction.setString(1, user.getAccess());
+        instruction.setLong(2, user.getId());
+        int result = instruction.executeUpdate();
+        instruction.close();
         return result == 1;
     }
 

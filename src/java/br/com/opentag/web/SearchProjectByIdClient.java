@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,10 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ricardo Ferreira Pariz Silva
  */
-public class SearchProjectById implements Run{
-    
-    
-    
+public class SearchProjectByIdClient implements Run{
+
     @Override
     public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Gson gson = new Gson();
@@ -32,21 +31,17 @@ public class SearchProjectById implements Run{
         try{
             Connection connection = new ConnectionPool().getConnection();
             ProjectDAO dao = new ProjectDAO(connection);
-            Project project = dao.searchProjectByid(Integer.parseInt(request.getParameter("id")));
-            if (project != null) {
-                json = gson.toJson(project);
-            } else {
-                System.out.println("Error ! Project is null");
-            }
+            List<Project> projects = dao.searchProjectByIdClient(Integer.parseInt(request.getParameter("id")));
+            json = gson.toJson(projects);
         } catch(SQLException e){
-            System.out.println("Erro no Banco de dados: " + e.getMessage());
+            System.out.println("Erro no DB" + e.getMessage());
         }
+        
         return json;
     }
 
     @Override
     public String getMethod() {
         return "ajax";
-    }
-    
+    }    
 }
