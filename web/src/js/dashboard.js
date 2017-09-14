@@ -9,4 +9,10 @@ $(document).ready(function () {
       $(this).attr("src", caminho + "?q=" + moment().millisecond());
     });
   }
+
+  $("#button-nav").click(function(){
+    console.log("foi");
+    $(".struct .row .col-nav").toggleClass("sidenav-bar");
+    $(".struct .row .col-nav").toggleClass("opening");
+  });
 });

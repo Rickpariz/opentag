@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-        <title>Perfil - ADM </title>
+        <title>Perfil</title>
         <link rel="icon" href="imgs/simbolo.png" type="image/x-icon" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link href="https://fonts.googleapis.com/css?family=Oswald:200" rel="stylesheet">
@@ -19,17 +19,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
         <link href="../../src/css/bootstrap.min.css" rel="stylesheet" />
         <link href="../../src/css/material-kit.css" rel="stylesheet" />
-        <link href="../../src/css/dashboard.css" rel="stylesheet" />
+        <link href="../../src/css/dashboard.css" rel="stylesheet"/>
         <link href="../../src/css/upload-input.css" rel="stylesheet" />
         <link href="../../src/css/iziToast.min.css" rel="stylesheet" />
-
-        <style>
-
-        </style>
     </head>
     <body>
       <nav class="navbar navbar-custom">
-        <button type="button" class="navbar-toggle pull-left">
+        <button type="button" id="button-nav" class="navbar-toggle pull-left">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -39,168 +35,176 @@
           <a class="navbar-brand">OpenTag</a>
         </div>
       </nav>
-      <div class="col-md-3 col-modify">
-        <aside id="sidebar" class="sidebar sidebar-default open hidden-sm hidden-xs" role="navigation">
-          <div class="sidebar-header header-cover">
-              <div class="top-bar"></div>
-              <div class="sidebar-image">
-                  <img src="" data-image="/opentag/Image/${userSession.pictureProfile}">
-                  ${userSession.name}
-              </div>
-              <span class="sidebar-brand">
-                  ${userSession.email}
-              </span>
-          </div>
-          <form action="../../tag" method="post" id="logout">
-          <ul class="nav sidebar-nav">
-              <li>
-                  <a href="../dashboard">
-                      <i class="material-icons sidebar-icon">dashboard</i>
-                      Dashboard
-                  </a>
-              </li>
-              <li>
-                  <a href="#">
-                      <i class="sidebar-icon material-icons">face</i>
-                      Clientes
-                  </a>
-              </li>
-              <li>
-                  <a href="projetos">
-                      <i class="sidebar-icon material-icons">description</i>
-                      Projetos
-                  </a>
-              </li>
-              <li>
-                  <a href="#">
-                      <i class="sidebar-icon material-icons">message</i>
-                      Mensagens
-                  </a>
-              </li>
-              <li class="divider"></li>
-              <li class="active">
-                  <a href="perfil">
-                      Perfil
-                  </a>
-              </li>
-              <li>
-                <input type="hidden" name="execute" value="Logout">
-                <a href="#" onClick="document.getElementById('logout').submit();">
-                  Sair
-                </a>
-              </li>
-          </ul>
-          </form>
-        </aside>
-      </div>
-      <div class="col-md-9 col-sm-12">
+      <div class="struct">
         <div class="row">
-          <div class="title">
-            <h2>Perfil</h2>
-          </div>
-          <div class="alert alert-info col-md-12">
-	            <div class="container-fluid">
-      					<div class="alert-icon">
-      						<i class="material-icons">info_outline</i>
-      					</div>
-      					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      						<span aria-hidden="true"><i class="material-icons">clear</i></span>
-      					</button>
-	            	<b>Plano:</b> Atualmente seu plano é o X2XXXX
-	            </div>
-	        </div>
-          <div class="">
-            <div class="col-md-3">
-              <img src="" data-image="/opentag/Image/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
-              <br/>
-              <form class="text-center" id="upload">
-                <input type="hidden" id="UpdateProfile" value="/opentag/dashboard/updateProfile">
-                <label class="file" title="">
-                  <input type="file" id="perfil" name="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
-                </label>
-                <input type="submit" id="btn-perfil" class="btn btn-custom btn-sm" value="Enviar" disabled/>
+          <div class="col-md-3 col-nav sidenav-bar">
+            <aside id="sidebar" class="sidebar sidebar-default open" role="navigation">
+              <div class="sidebar-header header-cover">
+                  <div class="top-bar"></div>
+                  <div class="sidebar-image">
+                      <img src="" data-image="/opentag/Image/${userSession.pictureProfile}">
+                      ${userSession.name}
+                  </div>
+                  <span class="sidebar-brand">
+                      ${userSession.email}
+                  </span>
+              </div>
+              <form action="../../tag" method="post" id="logout">
+              <ul class="nav sidebar-nav">
+                  <li>
+                      <a href="../dashboard">
+                          <i class="material-icons sidebar-icon">dashboard</i>
+                          Dashboard
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#">
+                          <i class="sidebar-icon material-icons">face</i>
+                          Clientes
+                      </a>
+                  </li>
+                  <li>
+                      <a href="projetos">
+                          <i class="sidebar-icon material-icons">description</i>
+                          Projetos
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#">
+                          <i class="sidebar-icon material-icons">message</i>
+                          Mensagens
+                      </a>
+                  </li>
+                  <li class="divider"></li>
+                  <li class="active">
+                      <a href="perfil">
+                          Perfil
+                      </a>
+                  </li>
+                  <li>
+                    <input type="hidden" name="execute" value="Logout">
+                    <a href="#" onClick="document.getElementById('logout').submit();">
+                      Sair
+                    </a>
+                  </li>
+              </ul>
               </form>
-
-              <br/>
-              <br/>
-            </div>
-            <div class="col-md-9">
-              <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading">
-                  <i class="material-icons">settings</i>
-                  Informações da Conta
-                </div>
-                <div class="panel-body">
-                  <div class="alert alert-info editDefault col-md-12">
-        	            <div class="container-fluid">
-              					<div class="alert-icon">
-              						<i class="material-icons">info_outline</i>
-              					</div>
-              					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              						<span aria-hidden="true"><i class="material-icons">clear</i></span>
-              					</button>
-        	            	 Cuidado ao alterar suas informações
-        	            </div>
-        	        </div>
-                  <!-- id do usuario -->
-                  <input type="hidden" id="id" value="${userSession.id}">
-                  <!-- url do controller -->
-                  <input type="hidden" id="controller" value="../../tag">
-                  <!-- Padrão -->
-                  <p class="editDefault"> Nome: ${userSession.name}</p>
-                  <p class="editDefault"> Email: ${userSession.email}</p>
-
-                  <!-- Editar -->
-                  <div class="input-group col-sm-11 editActive hide">
-                    <span class="input-group-addon">
-                        <i class="material-icons">account_box</i>
-                      </span>
-                    <input type="text" class="form-control" id="nome" required="required" value="${userSession.name}">
-                  </div>
-                  <div class="input-group col-sm-11 editActive hide">
-                    <span class="input-group-addon">
-                        <i class="material-icons">email</i>
-                      </span>
-                    <input type="email" class="form-control" id="email" value="${userSession.email}">
-                  </div>
-                  <%-- <label class="file hide editActive" title="">
-                    <input type="file" id="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
-                  </label>
-                  <label class="capa file hide editActive" title="">
-                    <input type="file" id="capa" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
-                  </label> --%>
-
-                </div>
-                <div class="panel-footer">
-                  <button type="button" id="btn-edit" class="btn btn-custom btn-sm editDefault">Editar</button>
-                  <button type="button" id="btn-edit-senha" class="btn btn-custom btn-sm editDefault" data-toggle="modal" data-target="#myModal">Editar Senha</button>
-                  <button type="button" id="btn-confirmar" class="btn btn-custom btn-sm hide editActive">Confirmar</button>
-                  <button type="button" id="btn-cancelar" class="btn btn-custom btn-sm hide editActive">Cancelar</button>
-                </div>
-              </div>
-            </div>
+            </aside>
           </div>
-        </div>
+          <div class="col-md-9 col-sm-12">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="title">
+                  <h2>Perfil</h2>
+                </div>
+                <div class="alert alert-info col-md-12">
+      	            <div class="container-fluid">
+            					<div class="alert-icon">
+            						<i class="material-icons">info_outline</i>
+            					</div>
+            					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+            					</button>
+      	            	<b>Plano:</b> Atualmente seu plano é o X2XXXX
+      	            </div>
+      	        </div>
+                <div class="foto">
+                  <div class="col-md-4">
+                    <img src="" data-image="/opentag/Image/${userSession.pictureProfile}" class="img-rounded img-responsive img-raised">
+                    <br/>
+                    <form class="text-center" id="upload">
+                      <input type="hidden" id="UpdateProfile" value="/opentag/dashboard/updateProfile">
+                      <label class="file" title="">
+                        <input type="file" id="perfil" name="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
+                      </label>
+                      <input type="submit" id="btn-perfil" class="btn btn-custom btn-sm" value="Enviar" disabled/>
+                    </form>
 
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="panel panel-default">
-              <!-- Default panel contents -->
-              <div class="panel-heading">
-                <i class="material-icons">assessment</i>
-                Informações do Plano
+                    <br/>
+                    <br/>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="panel panel-default">
+                      <!-- Default panel contents -->
+                      <div class="panel-heading">
+                        <i class="material-icons">settings</i>
+                        Informações da Conta
+                      </div>
+                      <div class="panel-body">
+                        <div class="alert alert-info editDefault col-md-12">
+              	            <div class="container-fluid">
+                    					<div class="alert-icon">
+                    						<i class="material-icons">info_outline</i>
+                    					</div>
+                    					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    					</button>
+              	            	 Cuidado ao alterar suas informações
+              	            </div>
+              	        </div>
+                        <!-- id do usuario -->
+                        <input type="hidden" id="id" value="${userSession.id}">
+                        <!-- url do controller -->
+                        <input type="hidden" id="controller" value="../../tag">
+                        <!-- Padrão -->
+                        <p class="editDefault"> Nome: ${userSession.name}</p>
+                        <p class="editDefault"> Email: ${userSession.email}</p>
+
+                        <!-- Editar -->
+                        <div class="input-group col-sm-11 editActive hide">
+                          <span class="input-group-addon">
+                              <i class="material-icons">account_box</i>
+                            </span>
+                          <input type="text" class="form-control" id="nome" required="required" value="${userSession.name}">
+                        </div>
+                        <div class="input-group col-sm-11 editActive hide">
+                          <span class="input-group-addon">
+                              <i class="material-icons">email</i>
+                            </span>
+                          <input type="email" class="form-control" id="email" value="${userSession.email}">
+                        </div>
+                        <%-- <label class="file hide editActive" title="">
+                          <input type="file" id="perfil" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
+                        </label>
+                        <label class="capa file hide editActive" title="">
+                          <input type="file" id="capa" onchange="this.parentNode.setAttribute('title', this.value.replace(/^.*[\\/]/, ''))" />
+                        </label> --%>
+
+                      </div>
+                      <div class="panel-footer">
+                        <button type="button" id="btn-edit" class="btn btn-custom btn-sm editDefault">Editar</button>
+                        <button type="button" id="btn-edit-senha" class="btn btn-custom btn-sm editDefault" data-toggle="modal" data-target="#myModal">Editar Senha</button>
+                        <button type="button" id="btn-confirmar" class="btn btn-custom btn-sm hide editActive">Confirmar</button>
+                        <button type="button" id="btn-cancelar" class="btn btn-custom btn-sm hide editActive">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm
-              </div>
-              <div class="panel-footer">
-                <button type="button" class="btn btn-custom btn-sm">Editar</button>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                      <i class="material-icons">assessment</i>
+                      Informações do Plano
+                    </div>
+                    <div class="panel-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm
+                    </div>
+                    <div class="panel-footer">
+                      <button type="button" class="btn btn-custom btn-sm">Editar</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
 
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       	<div class="modal-dialog">

@@ -58,7 +58,6 @@ public class Register implements Run {
             System.out.println("Erro ao inserir no banco de dados: " + e.getMessage());
             jsonResponse.setStatus(false);
             jsonResponse.setMessage("Erro ao inserir no banco de dados");
-            
         } catch (Exception e) {
             jsonResponse.setStatus(false);
             jsonResponse.setMessage("Erro desconhecido");

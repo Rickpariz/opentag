@@ -64,6 +64,7 @@ $(document).ready(function() {
         sortOrder: "desc"
       });
       myStyleTable();
+      $(".page-list").remove();
     }
   });
 
