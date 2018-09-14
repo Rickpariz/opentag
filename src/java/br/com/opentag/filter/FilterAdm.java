@@ -30,14 +30,14 @@ public class FilterAdm implements Filter{
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        User user = (User) req.getSession().getAttribute("userSession");
-        if (user == null || !user.getType().equals("adm")) {
-            resp.sendError(400);
-        } else {
+//        HttpServletRequest req = (HttpServletRequest) request;
+//        HttpServletResponse resp = (HttpServletResponse) response;
+//        User user = (User) req.getSession().getAttribute("userSession");
+//        if (user == null || !user.getType().equals("adm")) {
+//            resp.sendError(400);
+//        } else {
             chain.doFilter(request, response);
-        }     
+//        }     
     }
 
     @Override

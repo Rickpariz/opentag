@@ -21,13 +21,14 @@ public class InsetsAdm {
         
         try {
             Connection connection = (Connection) new ConnectionPool().getConnection();
-            String sql = "insert into usuarios (nome, email, senha, tipo) values (?,?,?,?)";
+            String sql = "insert into usuarios (nome, email, senha, tipo, acesso) values (?,?,?,?,?)";
             PreparedStatement instruction = connection.prepareStatement(sql);
             
             instruction.setString(1, "Ricardo Ferreira Pariz Silva");
             instruction.setString(2, "opentag@gmail.com");
             instruction.setString(3, BCrypt.hashpw("1234", BCrypt.gensalt()));
             instruction.setString(4, "adm");
+            instruction.setString(5, "liberado");
 
             int result = instruction.executeUpdate();
             instruction.close();

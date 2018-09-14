@@ -14,19 +14,19 @@ import java.sql.SQLException;
  * @author Ricardo Ferreira Pariz Silva
  */
 public class ConnectionPool {
-    
+
     private final MysqlConnectionPoolDataSource dataSorce;
-    
-    public ConnectionPool(){
+
+    public ConnectionPool() {
         MysqlConnectionPoolDataSource pool = new MysqlConnectionPoolDataSource();
         pool.setURL("jdbc:mysql://127.0.0.1:3306/opentag");
-        pool.setUser("root");
-        pool.setPassword("123456");
+        pool.setUser("rickpariz");
+        pool.setPassword("1234");
         this.dataSorce = pool;
     }
-    
-    public Connection getConnection() throws SQLException{
+
+    public Connection getConnection() throws SQLException {
         Connection connection = this.dataSorce.getConnection();
-       return connection;
+        return connection;
     }
 }

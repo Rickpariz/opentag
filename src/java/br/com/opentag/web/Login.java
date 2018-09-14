@@ -53,7 +53,7 @@ public class Login implements Run {
             }
         } catch (SQLException ex) {
             jsonResponse.setStatus(false);
-            jsonResponse.setMessage("Erro no banco de dados");
+            jsonResponse.setMessage("Erro no banco de dados: " + ex.getMessage());
         }
 
         Gson gson = new Gson();

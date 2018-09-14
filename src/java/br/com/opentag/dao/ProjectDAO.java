@@ -42,7 +42,7 @@ public class ProjectDAO {
 
     public List searchProjects() throws SQLException {
         List<Project> projects = new ArrayList<>();
-        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id) order by id desc";
+        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos p join usuarios u on (p.id_usuario = u.id) order by id desc";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         instruction.executeQuery();
         ResultSet result = instruction.getResultSet();
@@ -66,7 +66,7 @@ public class ProjectDAO {
 
     public Project searchProjectByid(int id) throws SQLException {
         Project project = null;
-        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos P join usuarios U on (P.id_usuario = u.id) where p.id = ?";
+        String sql = "select  p.id, p.nome, p.id_usuario, p.descricao, p.plano, p.prazo, p.prioridade, p.status, p.porcentagem, u.nome, u.email from projetos p join usuarios u on (p.id_usuario = u.id) where p.id = ?";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         instruction.setInt(1, id);
         instruction.executeQuery();

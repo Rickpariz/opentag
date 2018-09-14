@@ -26,6 +26,7 @@ public class UserDAO {
     }
 
     public User searchEmail(String email) throws SQLException {
+        User u = null;
         String sql = "Select * from usuarios where email = ?";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         instruction.setString(1, email);
@@ -34,31 +35,28 @@ public class UserDAO {
         if (resultSet.next()) {
             String senha = resultSet.getString("senha");
             String emaill = resultSet.getString("email");
-            User user = new User(emaill, senha);
-            user.setType(resultSet.getString("tipo"));
-            user.setId(resultSet.getLong("id"));
-            user.setName(resultSet.getString("nome"));
-            user.setPictureProfile(resultSet.getString("pictureProfile"));
-            user.setPictureCover(resultSet.getString("pictureCover"));
-            user.setAccess(resultSet.getString("acesso"));
-            return user;
+            u = new User(emaill, senha);
+            u.setType(resultSet.getString("tipo"));
+            u.setId(resultSet.getLong("id"));
+            u.setName(resultSet.getString("nome"));
+            u.setPictureProfile(resultSet.getString("pictureProfile"));
+            u.setPictureCover(resultSet.getString("pictureCover"));
+            u.setAccess(resultSet.getString("acesso"));
         }
-
         resultSet.close();
         instruction.close();
-
-        return null;
-
+        return u;
     }
 
     public boolean insert(User user) throws SQLException {
-        String sql = "insert into usuarios (nome, email, senha) values (?,?,?)";
+        String sql = "insert into usuarios (nome, email, senha, acesso, tipo) values (?,?,?,?,?)";
         PreparedStatement instruction = this.connection.prepareStatement(sql);
         String name = user.getName();
         instruction.setString(1, name);
         instruction.setString(2, user.getEmail());
         instruction.setString(3, user.getPassword());
-
+        instruction.setString(4, "liberado");
+        instruction.setString(5, "cli");
         int result = instruction.executeUpdate();
         instruction.close();
         return result == 1;
